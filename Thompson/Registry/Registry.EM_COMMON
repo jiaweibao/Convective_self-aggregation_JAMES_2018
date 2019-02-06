@@ -515,25 +515,21 @@ state  integer  has_reqc          -     misc        1         -     r        "ha
 state  integer  has_reqi          -     misc        1         -     r        "has_reqi"       "Flag for having effective radius cloud ice"  ""
 state  integer  has_reqs          -     misc        1         -     r        "has_reqs"       "Flag for having effective radius snow"  ""
 
-# Terminal Velocity BAO 21 AUG 2017
+# Terminal Velocity BAO 21 AUG 2017 (Add r BAO 07 DEC 2017)
  state    real   vt_qr            ikj    misc        1         -     rh        "vt_qr"          "Terminal velocity of rain"      "m s-1"
  state    real   vt_qs            ikj    misc        1         -     rh        "vt_qs"          "Terminal velocity of snow"      "m s-1"
  state    real   vt_qg            ikj    misc        1         -     rh        "vt_qg"          "Terminal velocity of graupel"   "m s-1"
 # Terminal Velocity BAO 21 AUG 2017   
 
-# Instantaneous Rain Evaporation and Vapor Condensation BAO 21 AUG 2017    
+# Instantaneous Rain Evaporation and Vapor Condensation BAO 21 AUG 2017 (Add r BAO 07 DEC 2017)    
 state    real   revap             ikj    misc        1         -     rh        "revap"          "Evaporation of rain"      "kg kg-1"
 state    real   vcond             ikj    misc        1         -     rh        "vcond"          "Condensation of water vapor"      "kg kg-1"
 # Rain Evaporation and Vapor Condensation BAO 21 AUG 2017    
 
-# Accumulated Rain Evaporation and Vapor Condensation BAO 05 SEP 2017
+# Accumulated Rain Evaporation and Vapor Condensation BAO 05 SEP 2017 (Add r BAO 07 DEC 2017)
  state    real   acrevap             ikj    misc        1         -     rh        "acrevap"          "Accumulated evaporation of rain"      "kg kg-1"
  state    real   acvcond             ikj    misc        1         -     rh        "acvcond"          "Accumulated condensation of water vapor"      "kg kg-1"
 # Accumulated Rain Evaporation and Vapor Condensation BAO 05 SEP 2017 
-
-## Impose radiative cooling BAO 06 DEC 2017 (Commented 08 DEC 2017)
-#state   real     Radten_imposed       k      dyn_em     1        -     i5rh       "Radten_imposed"  "Imposed radiation tendency"  "K s-1"
-## Impose radiative cooling BAO 06 DEC 2017
 
 
 # Other Scalars
@@ -1403,10 +1399,10 @@ state    real  RQVFTEN          ikj     misc        1         -      r        "R
 
 state integer  STEPCU          -        misc        1         -      r        "STEPCU"                "NUMBER OF FUNDAMENTAL TIMESTEPS BETWEEN CONVECTION CALLS"  ""
                                                 
-state    real  RTHRATEN        ikj      misc        1         -      rhd       "RTHRATEN"              "COUPLED THETA TENDENCY DUE TO RADIATION"              "Pa K s-1"
+state    real  RTHRATEN        ikj      misc        1         -      rd       "RTHRATEN"              "COUPLED THETA TENDENCY DUE TO RADIATION"              "Pa K s-1"
 # BAO 13 OCT 2017
-state    real  RTHRATENLW      ikj      misc        1         -      r        "RTHRATLW"              "UNCOUPLED THETA TENDENCY DUE TO LONG WAVE RADIATION"    "K s-1"
-state    real  RTHRATENSW      ikj      misc        1         -      r        "RTHRATSW"              "UNCOUPLED THETA TENDENCY DUE TO SHORT WAVE RADIATION"   "K s-1"
+state    real  RTHRATENLW      ikj      misc        1         -      rh        "RTHRATLW"              "UNCOUPLED THETA TENDENCY DUE TO LONG WAVE RADIATION"    "K s-1"
+state    real  RTHRATENSW      ikj      misc        1         -      rh        "RTHRATSW"              "UNCOUPLED THETA TENDENCY DUE TO SHORT WAVE RADIATION"   "K s-1"
 # BAO 13 OCT 2017
 state    real  CLDFRA          ikj      misc        1         -      rh       "CLDFRA"                "CLOUD FRACTION"                                       ""
 state    real  CLDFRA_OLD      ikj      misc        1         -      r        "CLDFRA_OLD"            "previous time level cldfra"                           ""
@@ -2142,11 +2138,6 @@ rconfig   real      ocean_t         namelist,domains    max_ocean      -1      -
 rconfig   real      ocean_s         namelist,domains    max_ocean      -1      -     "vertical profile of salinity" 
 rconfig   integer   num_traj        namelist,domains    1               25      irh   "num_traj" "#of trajectory" ""
 
-# Impose radiative cooling BAO 08 DEC 2017
-rconfig   real     Radten_imposed   namelist,physics    max_eta        -1      -     "Radten_imposed"  "Imposed radiation tendency"  "K s-1"
-# Impose radiative cooling BAO 08 DEC 2017
-
-
 # variable for time series of vertical profile of U, V, Theta, GHT,a nd QVAPOR
 rconfig   integer   max_ts_level    namelist,domains    1              15       -       "max_ts_level"   "Highest model level for time series output"
 
@@ -2168,7 +2159,6 @@ rconfig   real    vmax_ratio           namelist,tc      max_bogus      -999.   i
 rconfig   real    rankine_lid          namelist,tc      1              -999.   irh    "top pressure limit for the tc bogus scheme"
 
 # Physics
-
 rconfig   logical  force_read_thompson   namelist,physics      1           .false.
 rconfig   logical  write_thompson_tables   namelist,physics     1           .true.
 rconfig   integer     mp_physics          namelist,physics	max_domains    0       irh       "mp_physics"            ""      ""
